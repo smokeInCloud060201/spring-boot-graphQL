@@ -1,0 +1,19 @@
+server:
+  port=8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/graphql_demo
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:admin123}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+  graphql:
+    graphiql:
+      enabled: true
+      path: /

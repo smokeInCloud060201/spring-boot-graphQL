@@ -1,0 +1,6 @@
+
+type Address {
+    id: String
+    name: String
+    location: String
+}

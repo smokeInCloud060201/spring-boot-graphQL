@@ -1,0 +1,49 @@
+## queries
+type Query{
+    searchPersons(personQuery : PersonQuery!) : PaginatedPersons
+}
+## inputs
+input PersonQuery {
+    and : [PersonFilter!]
+    or : [PersonFilter!]
+    orders : [PersonOrder]!
+    pageIndex : Int!
+    pageSize : Int!
+}
+input PersonFilter {
+    id : StringExpression
+    name : StringExpression
+    dateOfBirth : LocalDateExpression
+    emailVerified : BooleanExpression
+    creditScore : IntegerExpression
+    and : PersonFilter
+    or : PersonFilter
+}
+input PersonOrder {
+    id : OrderType
+    name : OrderType
+    dateOfBirth : OrderType
+    emailVerified : OrderType
+    creditScore : OrderType
+}
+## types
+type PaginatedPersons {
+    content : [Person]
+    pageIndex : Int
+    pageSize : Int
+    totalCount : Int
+    pageCount : Int
+}
+
+type Person {
+    id : String
+    createdOn : String
+    lastModifiedOn : String
+    name : String
+    dateOfBirth : String
+    email : String
+    emailVerified : Boolean
+    creditScore : Int
+    addresses: [Address]
+}
+
