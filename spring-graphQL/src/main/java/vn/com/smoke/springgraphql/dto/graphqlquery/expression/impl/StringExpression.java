@@ -1,8 +1,8 @@
-package vn.com.smoke.springgraphql.graphqlquery.expression.impl;
+package vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl;
 
-import com.example.graphqldynamicquery.dto.graphqlquery.expression.EquableExpression;
-import com.example.graphqldynamicquery.dto.graphqlquery.expression.NullCheckableExpression;
-import com.example.graphqldynamicquery.dto.graphqlquery.operator.*;
+import vn.com.smoke.springgraphql.dto.graphqlquery.expression.EquableExpression;
+import vn.com.smoke.springgraphql.dto.graphqlquery.expression.NullCheckableExpression;
+import vn.com.smoke.springgraphql.dto.graphqlquery.operator.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

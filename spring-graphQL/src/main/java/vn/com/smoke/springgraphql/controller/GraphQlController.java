@@ -1,21 +1,20 @@
 package vn.com.smoke.springgraphql.controller;
 
-import com.example.graphqldynamicquery.dto.graphqlquery.PersonDTO;
-import com.example.graphqldynamicquery.dto.graphqlquery.PersonQuery;
-import com.example.graphqldynamicquery.model.Paginated;
-import com.example.graphqldynamicquery.repository.PersonRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RestController;
+import vn.com.smoke.springgraphql.dto.graphqlquery.PersonDTO;
+import vn.com.smoke.springgraphql.dto.graphqlquery.PersonQuery;
+import vn.com.smoke.springgraphql.model.Paginated;
+import vn.com.smoke.springgraphql.repository.PersonRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-@Controller
+@RestController
+@RequiredArgsConstructor
 public class GraphQlController {
 
     private final PersonRepository personRepository;
-
-    public GraphQlController(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
 
     @QueryMapping
     public Paginated<PersonDTO> searchPersons(

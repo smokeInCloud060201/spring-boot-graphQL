@@ -1,4 +1,4 @@
-package vn.com.smoke.springgraphql.graphqlquery.operator;
+package vn.com.smoke.springgraphql.dto.graphqlquery.operator;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Like {
+public class Equals<T> {
 
-    private String value;
+    T value;
 }

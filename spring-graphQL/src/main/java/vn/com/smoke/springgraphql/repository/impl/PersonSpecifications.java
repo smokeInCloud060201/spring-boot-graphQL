@@ -1,9 +1,9 @@
 package vn.com.smoke.springgraphql.repository.impl;
 
-import com.example.graphqldynamicquery.dto.graphqlquery.OrderType;
-import com.example.graphqldynamicquery.dto.graphqlquery.PersonQuery;
-import com.example.graphqldynamicquery.entity.Person;
-import com.example.graphqldynamicquery.util.ReflectionUtil;
+import vn.com.smoke.springgraphql.dto.graphqlquery.OrderType;
+import vn.com.smoke.springgraphql.dto.graphqlquery.PersonQuery;
+import vn.com.smoke.springgraphql.entity.Person;
+import vn.com.smoke.springgraphql.util.ReflectionUtil;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;

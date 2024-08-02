@@ -1,4 +1,4 @@
-package vn.com.smoke.springgraphql.graphqlquery.operator;
+package vn.com.smoke.springgraphql.dto.graphqlquery.operator;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,12 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class LessThanOrEqualTo<T> {
+public class In<T> {
 
-    private T value;
+    private List<T> values;
 }

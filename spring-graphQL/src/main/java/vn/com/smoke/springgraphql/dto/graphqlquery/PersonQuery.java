@@ -1,9 +1,9 @@
-package vn.com.smoke.springgraphql.graphqlquery;
+package vn.com.smoke.springgraphql.dto.graphqlquery;
 
-import com.example.graphqldynamicquery.dto.graphqlquery.expression.impl.BooleanExpression;
-import com.example.graphqldynamicquery.dto.graphqlquery.expression.impl.IntegerExpression;
-import com.example.graphqldynamicquery.dto.graphqlquery.expression.impl.LocalDateExpression;
-import com.example.graphqldynamicquery.dto.graphqlquery.expression.impl.StringExpression;
+import vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl.BooleanExpression;
+import vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl.IntegerExpression;
+import vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl.LocalDateExpression;
+import vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl.StringExpression;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

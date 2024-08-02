@@ -1,6 +1,6 @@
-package vn.com.smoke.springgraphql.graphqlquery;
+package vn.com.smoke.springgraphql.dto.graphqlquery;
 
-import com.example.graphqldynamicquery.entity.Address;
+import vn.com.smoke.springgraphql.entity.Address;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Singular;

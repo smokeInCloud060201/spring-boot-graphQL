@@ -1,11 +1,11 @@
 package vn.com.smoke.springgraphql.repository.impl;
 
-import com.example.graphqldynamicquery.dto.graphqlquery.PersonDTO;
-import com.example.graphqldynamicquery.dto.graphqlquery.PersonQuery;
-import com.example.graphqldynamicquery.entity.Person;
-import com.example.graphqldynamicquery.model.Paginated;
-import com.example.graphqldynamicquery.repository.PersonRepository;
-import com.example.graphqldynamicquery.repository.PersonRepositoryQueryMethod;
+import vn.com.smoke.springgraphql.dto.graphqlquery.PersonDTO;
+import vn.com.smoke.springgraphql.dto.graphqlquery.PersonQuery;
+import vn.com.smoke.springgraphql.entity.Person;
+import vn.com.smoke.springgraphql.model.Paginated;
+import vn.com.smoke.springgraphql.repository.PersonRepository;
+import vn.com.smoke.springgraphql.repository.PersonRepositoryQueryMethod;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static com.example.graphqldynamicquery.repository.impl.PersonSpecifications.createSort;
+import static vn.com.smoke.springgraphql.repository.impl.PersonSpecifications.createSort;
 
 @Slf4j
 @Component

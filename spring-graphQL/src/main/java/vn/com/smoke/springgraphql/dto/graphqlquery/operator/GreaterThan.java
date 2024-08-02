@@ -1,4 +1,4 @@
-package vn.com.smoke.springgraphql.graphqlquery.operator;
+package vn.com.smoke.springgraphql.dto.graphqlquery.operator;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GreaterThanOrEqualTo<T> {
+public class GreaterThan<T> {
 
     private T value;
 }

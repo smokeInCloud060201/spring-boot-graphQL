@@ -1,10 +1,10 @@
 package vn.com.smoke.springgraphql.util;
 
-import com.example.graphqldynamicquery.dto.graphqlquery.expression.impl.BooleanExpression;
-import com.example.graphqldynamicquery.dto.graphqlquery.expression.impl.IntegerExpression;
-import com.example.graphqldynamicquery.dto.graphqlquery.expression.impl.LocalDateExpression;
-import com.example.graphqldynamicquery.dto.graphqlquery.expression.impl.StringExpression;
-import com.example.graphqldynamicquery.entity.BaseEntity;
+import vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl.BooleanExpression;
+import vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl.IntegerExpression;
+import vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl.LocalDateExpression;
+import vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl.StringExpression;
+import vn.com.smoke.springgraphql.entity.BaseEntity;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;

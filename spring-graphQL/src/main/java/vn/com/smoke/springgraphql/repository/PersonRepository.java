@@ -1,8 +1,8 @@
 package vn.com.smoke.springgraphql.repository;
 
-import com.example.graphqldynamicquery.dto.graphqlquery.PersonDTO;
-import com.example.graphqldynamicquery.dto.graphqlquery.PersonQuery;
-import com.example.graphqldynamicquery.model.Paginated;
+import vn.com.smoke.springgraphql.dto.graphqlquery.PersonDTO;
+import vn.com.smoke.springgraphql.dto.graphqlquery.PersonQuery;
+import vn.com.smoke.springgraphql.model.Paginated;
 
 public interface PersonRepository {
 
