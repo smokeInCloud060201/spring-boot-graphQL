@@ -1,10 +1,11 @@
 package vn.com.smoke.springgraphql.repository;
 
-import vn.com.smoke.springgraphql.dto.graphqlquery.PersonDTO;
-import vn.com.smoke.springgraphql.dto.graphqlquery.PersonQuery;
-import vn.com.smoke.springgraphql.model.Paginated;
 
-public interface PersonRepository {
+import vn.com.smoke.springgraphql.entity.Person;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
 
-    Paginated<PersonDTO> searchPerson(PersonQuery personQuery);
+@Repository
+public interface PersonRepository extends JpaRepository<Person, String>, JpaSpecificationExecutor<Person> {
 }

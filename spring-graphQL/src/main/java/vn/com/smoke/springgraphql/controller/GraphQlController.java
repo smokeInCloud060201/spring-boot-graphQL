@@ -2,24 +2,23 @@ package vn.com.smoke.springgraphql.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
-import vn.com.smoke.springgraphql.dto.graphqlquery.PersonDTO;
-import vn.com.smoke.springgraphql.dto.graphqlquery.PersonQuery;
+import vn.com.smoke.springgraphql.dto.person.PersonDTO;
+import vn.com.smoke.springgraphql.dto.person.PersonQuery;
 import vn.com.smoke.springgraphql.model.Paginated;
-import vn.com.smoke.springgraphql.repository.PersonRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.stereotype.Controller;
+import vn.com.smoke.springgraphql.service.PersonalService;
 
 @RestController
 @RequiredArgsConstructor
 public class GraphQlController {
 
-    private final PersonRepository personRepository;
+    private final PersonalService personalService;
 
     @QueryMapping
     public Paginated<PersonDTO> searchPersons(
             @Argument PersonQuery personQuery
     ) {
-        return personRepository.searchPerson(personQuery);
+        return personalService.searchPerson(personQuery);
     }
 }

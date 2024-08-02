@@ -6,7 +6,7 @@ type Query{
 input PersonQuery {
     and : [PersonFilter!]
     or : [PersonFilter!]
-    orders : [PersonOrder]!
+    orders : PersonOrder!
     pageIndex : Int!
     pageSize : Int!
 }

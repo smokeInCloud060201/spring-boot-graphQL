@@ -1,5 +1,7 @@
-package vn.com.smoke.springgraphql.dto.graphqlquery;
+package vn.com.smoke.springgraphql.dto.person;
 
+import vn.com.smoke.springgraphql.dto.FilterAbstractQuery;
+import vn.com.smoke.springgraphql.dto.graphqlquery.OrderType;
 import vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl.BooleanExpression;
 import vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl.IntegerExpression;
 import vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl.LocalDateExpression;
@@ -12,18 +14,12 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Builder
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class PersonQuery {
+public class PersonQuery extends FilterAbstractQuery {
 
-    @Builder
     @Getter
     @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
     public static class Filter {
         private StringExpression id;
         private StringExpression name;
@@ -34,11 +30,8 @@ public class PersonQuery {
         private Filter or;
     }
 
-    @Builder
     @Getter
     @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
     public static class Order {
         private OrderType id;
         private OrderType name;
@@ -49,7 +42,7 @@ public class PersonQuery {
 
     private List<Filter> and;
     private List<Filter> or;
-    private List<Order> orders;
+    private Order order;
 
     Integer pageIndex;
     Integer pageSize;

@@ -1,4 +1,4 @@
-package vn.com.smoke.springgraphql.dto.graphqlquery;
+package vn.com.smoke.springgraphql.dto.person;
 
 import vn.com.smoke.springgraphql.entity.Address;
 import lombok.Builder;
