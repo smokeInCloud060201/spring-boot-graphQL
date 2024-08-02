@@ -13,11 +13,11 @@ import vn.com.smoke.springgraphql.entity.Person;
 import vn.com.smoke.springgraphql.model.Paginated;
 import vn.com.smoke.springgraphql.repository.PersonRepository;
 import vn.com.smoke.springgraphql.service.PersonalService;
-import vn.com.smoke.springgraphql.util.SpecificationMapper;
+import vn.com.smoke.springgraphql.util.SpecificationUtil;
 
 import java.util.List;
 
-import static vn.com.smoke.springgraphql.util.SpecificationMapper.createSort;
+import static vn.com.smoke.springgraphql.util.SpecificationUtil.createSort;
 
 @Service
 @RequiredArgsConstructor
@@ -30,8 +30,7 @@ public class PersonServiceImpl implements PersonalService {
 
     @Override
     public Paginated<PersonDTO> searchPerson(PersonQuery personQuery) {
-        Specification<Person> specification = SpecificationMapper.createSpecification(personQuery);
-
+        Specification<Person> specification = SpecificationUtil.createSpecification(personQuery, Person.class);
         Pageable pageable = PageRequest.of(personQuery.getPageIndex(), personQuery.getPageSize(), createSort(personQuery.getOrder()));
 
         Page<Person> personPage = personRepository.findAll(specification, pageable);
