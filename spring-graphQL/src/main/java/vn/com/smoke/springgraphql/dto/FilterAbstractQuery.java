@@ -7,14 +7,12 @@ import java.util.List;
 
 @Getter
 @Setter
-public abstract class FilterAbstractQuery {
-    public static class Filter {}
-    public static class Order {}
+public class FilterAbstractQuery<F extends IQuery.Filter, O extends IQuery.Order> {
 
-    private List<Filter> and;
-    private List<Filter> or;
-    private Order order;
+    protected List<F> and;
+    protected List<F> or;
+    protected O order;
 
-    Integer pageIndex;
-    Integer pageSize;
+    protected Integer pageIndex;
+    protected Integer pageSize;
 }

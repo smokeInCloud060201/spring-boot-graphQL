@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import vn.com.smoke.springgraphql.custom.CustomSpecification;
 import vn.com.smoke.springgraphql.dto.person.PersonDTO;
 import vn.com.smoke.springgraphql.dto.person.PersonQuery;
 import vn.com.smoke.springgraphql.entity.Person;
@@ -30,7 +31,7 @@ public class PersonServiceImpl implements PersonalService {
 
     @Override
     public Paginated<PersonDTO> searchPerson(PersonQuery personQuery) {
-        Specification<Person> specification = SpecificationUtil.createSpecification(personQuery, Person.class);
+        Specification<Person> specification = new CustomSpecification<>(personQuery);
         Pageable pageable = PageRequest.of(personQuery.getPageIndex(), personQuery.getPageSize(), createSort(personQuery.getOrder()));
 
         Page<Person> personPage = personRepository.findAll(specification, pageable);

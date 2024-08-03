@@ -5,8 +5,7 @@ import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
-import vn.com.smoke.springgraphql.dto.FilterAbstractQuery;
+import vn.com.smoke.springgraphql.dto.IQuery;
 import vn.com.smoke.springgraphql.dto.graphqlquery.OrderType;
 import vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl.BooleanExpression;
 import vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl.IntegerExpression;
@@ -15,36 +14,31 @@ import vn.com.smoke.springgraphql.dto.graphqlquery.expression.impl.StringExpress
 import vn.com.smoke.springgraphql.entity.BaseEntity;
 
 import java.lang.reflect.Field;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 public class SpecificationUtil {
 
-    public static <T extends FilterAbstractQuery.Filter, U extends BaseEntity> Predicate createPredicate(T filter, Root<U> root, CriteriaBuilder cb) {
+    public static <U extends BaseEntity, F extends IQuery.Filter> Predicate createPredicate(F filter, Root<U> root, CriteriaBuilder cb) {
         Class<?> clazz = filter.getClass();
         List<Predicate> predicates = new ArrayList<>();
         Field[] fields = clazz.getDeclaredFields();
-
+        Class<?>[] declaredClasses = filter.getClass().getDeclaredClasses();
         for (Field field : fields) {
             try {
                 field.setAccessible(true);
                 String fieldName = field.getName();
                 Object fieldValue = field.get(filter);
                 if (fieldValue != null) {
-                    if (fieldValue instanceof StringExpression) {
-                        StringExpression fv = (StringExpression) fieldValue;
-                        predicates.add(createPredicate(fv, fieldName, root, cb));
-                    } else if (fieldValue instanceof BooleanExpression) {
-                        BooleanExpression fv = (BooleanExpression) fieldValue;
-                        predicates.add(createPredicate(fv, fieldName, root, cb));
-                    } else if (fieldValue instanceof IntegerExpression) {
-                        IntegerExpression fv = (IntegerExpression) fieldValue;
-                        predicates.add(createPredicate(fv, fieldName, root, cb));
-                    } else if (fieldValue instanceof LocalDateExpression) {
-                        LocalDateExpression fv = (LocalDateExpression) fieldValue;
-                        predicates.add(createPredicate(fv, fieldName, root, cb));
+                    if (fieldValue instanceof StringExpression se) {
+                        predicates.add(createPredicate(se, fieldName, root, cb));
+                    } else if (fieldValue instanceof BooleanExpression bx) {
+                        predicates.add(createPredicate(bx, fieldName, root, cb));
+                    } else if (fieldValue instanceof IntegerExpression ix) {
+                        predicates.add(createPredicate(ix, fieldName, root, cb));
+                    } else if (fieldValue instanceof LocalDateExpression lde) {
+                        predicates.add(createPredicate(lde, fieldName, root, cb));
                     }
                 }
             } catch (Exception e) {
@@ -115,31 +109,31 @@ public class SpecificationUtil {
         return cb.conjunction();
     }
 
-    public static <T extends FilterAbstractQuery, U extends BaseEntity> Specification<U> createSpecification(T filterQuery, Class<U> entityClass) {
-        return (root, query, cb) -> {
-            List<Predicate> predicates = new ArrayList<>();
+//    public static <T extends FilterAbstractQuery, U extends BaseEntity> Specification<U> createSpecification(FilterAbstractQuery filterQuery, Class<U> entityClass) {
+//        return (root, query, cb) -> {
+//            List<Predicate> predicates = new ArrayList<>();
+//
+//            if (filterQuery.getAnd() != null) {
+//                Predicate andPredicate = filterQuery.getAnd().stream()
+//                        .map(filter -> createPredicate(filter, root, cb))
+//                        .reduce(cb::and)
+//                        .orElse(cb.conjunction());
+//                predicates.add(andPredicate);
+//            }
+//
+//            if (filterQuery.getOr() != null) {
+//                Predicate orPredicate = filterQuery.getOr().stream()
+//                        .map(filter -> createPredicate(filter, root, cb))
+//                        .reduce(cb::or)
+//                        .orElse(cb.disjunction());
+//                predicates.add(orPredicate);
+//            }
+//
+//            return cb.and(predicates.toArray(new Predicate[0]));
+//        };
+//    }
 
-            if (filterQuery.getAnd() != null) {
-                Predicate andPredicate = filterQuery.getAnd().stream()
-                        .map(filter -> createPredicate(filter, root, cb))
-                        .reduce(cb::and)
-                        .orElse(cb.conjunction());
-                predicates.add(andPredicate);
-            }
-
-            if (filterQuery.getOr() != null) {
-                Predicate orPredicate = filterQuery.getOr().stream()
-                        .map(filter -> createPredicate(filter, root, cb))
-                        .reduce(cb::or)
-                        .orElse(cb.disjunction());
-                predicates.add(orPredicate);
-            }
-
-            return cb.and(predicates.toArray(new Predicate[0]));
-        };
-    }
-
-    public static Sort createSort(FilterAbstractQuery.Order order) {
+    public static <O> Sort createSort(O order) {
         if (order == null) {
             return Sort.unsorted();
         }
