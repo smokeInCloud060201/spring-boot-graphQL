@@ -3,6 +3,8 @@ package vn.com.smoke.springgraphql.util;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import vn.com.smoke.springgraphql.dto.IQuery;
@@ -18,13 +20,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SpecificationUtil {
 
     public static <U extends BaseEntity, F extends IQuery.Filter> Predicate createPredicate(F filter, Root<U> root, CriteriaBuilder cb) {
         Class<?> clazz = filter.getClass();
         List<Predicate> predicates = new ArrayList<>();
         Field[] fields = clazz.getDeclaredFields();
-        Class<?>[] declaredClasses = filter.getClass().getDeclaredClasses();
         for (Field field : fields) {
             try {
                 field.setAccessible(true);
@@ -108,30 +110,6 @@ public class SpecificationUtil {
         }
         return cb.conjunction();
     }
-
-//    public static <T extends FilterAbstractQuery, U extends BaseEntity> Specification<U> createSpecification(FilterAbstractQuery filterQuery, Class<U> entityClass) {
-//        return (root, query, cb) -> {
-//            List<Predicate> predicates = new ArrayList<>();
-//
-//            if (filterQuery.getAnd() != null) {
-//                Predicate andPredicate = filterQuery.getAnd().stream()
-//                        .map(filter -> createPredicate(filter, root, cb))
-//                        .reduce(cb::and)
-//                        .orElse(cb.conjunction());
-//                predicates.add(andPredicate);
-//            }
-//
-//            if (filterQuery.getOr() != null) {
-//                Predicate orPredicate = filterQuery.getOr().stream()
-//                        .map(filter -> createPredicate(filter, root, cb))
-//                        .reduce(cb::or)
-//                        .orElse(cb.disjunction());
-//                predicates.add(orPredicate);
-//            }
-//
-//            return cb.and(predicates.toArray(new Predicate[0]));
-//        };
-//    }
 
     public static <O> Sort createSort(O order) {
         if (order == null) {
